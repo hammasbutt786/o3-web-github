@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Page - O3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+      }
+    }
+  </script>
+  <style>
+    #image-sequence {
+      position: sticky;
+      top: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 120vh;
+    }
+
+    #loader {
+      position: fixed;
+      /* background: #000; */
+      top: 0;
+      font-size: 40px;
+      z-index: 2000;
+      color: black;
+      width: 100%;
+      height: 100vh;
+    }
+
+
+    .ddd {
+      position: sticky;
+      top: 0;
+      width: 100%;
+    }
+
+    .ssc {
+      background: #000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+    }
+
+    .three-renderer {
+      position: fixed;
+      top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header Part -->
+  <header>
+    <div class="header-wrapper flex-row justify-between items-center">
+      <div class="logo">
+        <a href="./index.html"><img src="./img/o3-logo.svg" alt="" class="img-fluid" /></a>
+      </div>
+      <div class="content flex-row justify-end items-center">
+        <a href="./ubl-case-study.html">Work</a>
+        <a href="./services.html">Services</a>
+        <a href="./transroad.html">Careers</a>
+        <a href="">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- <canvas id="canvas3d" style="width: 100%; height: 700px;"></canvas> -->
+  <!-- <div id="particles-js" style="height: 500px;"></div> -->
+  <!-- <div id="container" class="container-video">
+   
+    <canvas id="image-sequence"></canvas>
+      <section id="main-video-content" class="section-1280 main-video-content">
+        <div id="section-1-o3" class="section-1-o3 flex-col">
+          <div class="heading">
+            Innovative by Design –– Inspired by Imagination
+          </div>
+          <div class="paragraph">
+            We create experiences that are not only cohesive and engaging but
+            also adaptable and accessible in various environments.
+          </div>
+        </div>
+      </section>
+    </div> -->
+  <div id="container" class="container-video">
+    <canvas id="image-sequence"></canvas>
+    <div id="loader" class="flex-col items-center justify-center">
+      LOADING...
+    </div>
+    <section id="main-video-content" class="section-1280 main-video-content">
+      <div id="section-1-o3" class="section-1-o3 flex-col">
+        <div class="heading">
+          Innovative by Design –– Inspired by Imagination
+        </div>
+        <div class="paragraph">
+          We create experiences that are not only cohesive and engaging but
+          also adaptable and accessible in various environments.
+        </div>
+      </div>
+    </section>
+    <section id="main-video-content2" class="section-1280 main-video-content2">
+      <div class="section-2-o3 flex-col" id="section-2-o3">
+        <div class="paragraph">
+          Designing Experiences, Building Connections.
+        </div>
+        <div class="heading">
+          At O3 Interfaces, we focus on crafting meaningful connections
+          between businesses and people that leave an impact.
+        </div>
+      </div>
+    </section>
+    <section id="main-video-content3" class="section-1280 main-video-content3">
+      <div class="section-3-o3 flex-col">
+        <div class="heading heading-136">
+          Defying Conventions & Becoming The Odd One Out
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main class="o3-main-section-for-home-page">
+    <div>
+      <section class="section-4-o3 flex-col section-1280">
+        <div class="heading heading-152">
+          Designing Beyond Boundaries ––
+          <span class="heading2 heading-152">Bridging Brands & People</span>
+        </div>
+      </section>
+      <section class="section-7-o3 flex-col section-1440">
+        <div class="video-sec">
+          <video autoplay loop muted>
+            <source type="video/mp4" src="./video/20240327-152306.mp4" />
+          </video>
+        </div>
+        <div class="common-button-section flex-row section-1280">
+          <span class="paragraph">
+            By prioritizing intuitive interfaces and engaging content, we
+            foster a deep connection between our clients’ brands and their
+            audiences. Our designs are not just interfaces; they are bridges
+            that link businesses to their customers, creating lasting
+            impressions and meaningful interactions.
+          </span>
+          <div class="button-svg-arrow flex-row bg-black">
+            <span>Services</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 10 10" fill="none">
+              <path d="M9 8V1H2" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M9 1L1 9" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </section>
+      <section class="section-5-o3 flex-col section-1280">
+        <div class="heading heading-152">
+          Crafting with Care
+          <span class="heading-2 heading-152">–– Connecting with Hearts</span>
+        </div>
+      </section>
+
+      <section class="section-6-o3 flex-col section-1440 flex-col">
+        <div class="images-sections flex-col">
+          <div class="flex-col first-img-sec">
+            <img class="bg-img" src="/img/3.jpg" alt="img1" />
+            <div class="lables flex-row">
+              <span class="head">Client</span>
+              <span class="para">Project Description</span>
+            </div>
+          </div>
+
+          <div class="flex-row grid-sections-main">
+            <div class="flex-col grid-sections">
+              <img class="bg-img-2" src="/img/1.jpg" alt="img1" />
+              <div class="lables flex-row">
+                <span class="head">Client</span>
+                <span class="para">Project Description</span>
+              </div>
+            </div>
+            <div class="flex-col grid-sections">
+              <img class="bg-img-2" src="/img/5.jpg" alt="img1" />
+              <div class="lables flex-row">
+                <span class="head">Client</span>
+                <span class="para">Project Description</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row grid-sections-main">
+            <div class="flex-col grid-sections">
+              <img class="bg-img-2" src="/img/img-2.jpg" alt="img1" />
+
+              <div class="lables flex-row">
+                <span class="head">Client</span>
+                <span class="para">Project Description</span>
+              </div>
+            </div>
+            <div class="flex-col grid-sections">
+              <img class="bg-img-2" src="/img/6.jpg" alt="img1" />
+
+              <div class="lables flex-row">
+                <span class="head">Client</span>
+                <span class="para">Project Description</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="common-button-section flex-row section-1280">
+          <span class="paragraph">
+            We see our creations as more than just digital products; they are
+            vessels of experience, designed to evoke emotion and build
+            connections. Our design process is an empathetic journey, where we
+            immerse ourselves in the user’s world, understanding their
+            desires, needs, and aspirations.
+          </span>
+          <div class="button-svg-arrow flex-row bg-black">
+            <span>More Projects</span>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 10 10" fill="none">
+              <path d="M9 8V1H2" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M9 1L1 9" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-black">
+        <div class="section-8-o3 flex-col section-1280">
+          <div class="heading heading-152">
+            Let's Explore Your Next Big Idea Together
+          </div>
+          <div class="common-button-section flex-row section-1280">
+            <span class="paragraph clr-e0e0e1">
+              We believe that the journey towards digital innovation is best
+              navigated in partnership. Our team engages deeply with clients,
+              understanding their vision and aligning our expertise to their
+              aspirations. This journey is a shared endeavor, where we combine
+              our technical prowess with our clients' insights to discover and
+              conquer new digital territories.
+            </span>
+            <div class="button-svg-arrow flex-row bg-white">
+              <span class="clr-black">Get In Touch</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 10 10" fill="none">
+                <path d="M9 8V1H2" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9 1L1 9" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="top-optional">
+    <div class="row-wrapper flex-row justify-between">
+      <div class="footer-wrapper flex-col justify-between">
+        <p class="get-in-touch">MELBOURNE</p>
+        <p class="address">
+          123 Imaginary Lane, Suite 456, Level 8, Queen Victoria Market Area,
+          Melbourne, VIC 3000, Australia
+        </p>
+        <p class="get-in-touch location">GET IN TOUCH</p>
+        <a href="tel:+61490000000" class="number">+61 490 000 000</a>
+        <a href="mailto:info@o3interfaces.com" class="email">info@o3interfaces.com</a>
+      </div>
+
+      <div class="footer-wrapper flex-col items-center">
+        <p class="get-in-touch">DUBAI</p>
+        <p class="address">
+          789 Fictional Boulevard, Building No. 23, Office 101, Floor 5, Near
+          Mythical Park, Dubai Marina District, Dubai, UAE
+        </p>
+        <p class="get-in-touch location">JOIN US</p>
+        <a href="#" class="address">Apply Now</a>
+      </div>
+
+      <div class="footer-wrapper flex-col items-end">
+        <p class="get-in-touch">ISLAMABAD</p>
+        <p class="address">
+          456 Fabricated Road, Unit 789, 3rd Floor, Adjacent to Legend Plaza,
+          F-6 Sector, Islamabad, 44000, Pakistan
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom flex-row justify-between">
+      <div class="copy-right">
+        <p>&copy; 2024 O3 Interfaces LLC FZ</p>
+      </div>
+      <div class="social-links flex-row justify-end">
+        <a href="">X</a>
+        <a href="">INSTAGRAM</a>
+        <a href="">LINKEDIN</a>
+        <a href="">BEHANCE</a>
+        <a href="">PRIVACY POLICY</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+  <script src="/JS/ImageLoader.js" type="module"></script>
+
+
+  <!-- <script src="/packages/three-nebula/exported.js"></script>  -->
+  <script src="/JS/particles.js" type="module"></script>
+  <script type="text/javascript" src="/packages/three-nebula/build/three-nebula.js"></script>
+
+  <!-- <script src="/packages/three-nebula-master/website/components/primitives/Nebula/index.js" ></script> -->
+  <!-- <script src="/JS/three-app.js" type="module"></script> -->
+</body>
+
+
+</html>

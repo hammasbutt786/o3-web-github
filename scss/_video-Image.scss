@@ -1,0 +1,53 @@
+
+*{
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+  }
+  /* DESIGN ANIMATION SECTION */
+  .design-path{
+      fill: #f2f1ff;
+      stroke: #f2f1ff;
+      stroke-width: 8px;
+      -webkit-transform: translateZ(40px);
+         -moz-transform: translateZ(40px);
+          -ms-transform: translateZ(40px);
+           -o-transform: translateZ(40px);
+              transform: translateZ(40px);
+  }
+  #paint-drops{
+      /* position: absolute; */
+      /* object-fit: cover; */
+      width: 100%;
+      /* height: 100%; */
+  }
+  .design-images{
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: absolute;
+  }
+  .design-pin{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .design{
+      height: 100vh;
+      width: 100%;
+      position: relative;
+      z-index: 11;
+  }
+  .spacer{
+    height:100vh;
+    width:100%;
+    background:gray;
+    color:#fff;
+    display:grid;
+    justify-content:center;
+    align-items:center;
+  }
