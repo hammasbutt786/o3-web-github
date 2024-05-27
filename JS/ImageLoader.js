@@ -78,27 +78,27 @@ function checkAndRun() {
         interval = setTimeout(checkAndRun, 100); // retry every 100ms
     } else {
         clearInterval(interval);
-        // if (d === null) return
+        if (d === null) return
         // window.scrollTo(0, 0);
-        // let t = gsap.timeline({
-        //     scrollTrigger: {
-        //         trigger: '.container-video',
-        //         start: () => `${document.querySelector('.container-video').offsetHeight - 1300} bottom`,
-        //         end: `bottom bottom`,
-        //         scrub: true,
-        //         update: true,
-        //         refresh: true,
-        //         // markers: true,
-        //     },
-        // })
-        // t.to(d, {
+        let t = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.container-video',
+                start: () => `${document.querySelector('.container-video').offsetHeight - 1300} bottom`,
+                end: `bottom bottom`,
+                scrub: true,
+                update: true,
+                refresh: true,
+                // markers: true,
+            },
+        })
+        t.to(d, {
 
-        //     opacity: 0,
-        //     duration: 2.5
-        // }).to(d, {
-        //     position: 'absolute',
-        //     bottom: 0,
-        // })
+            opacity: 0,
+            duration: 2.5
+        }).to(d, {
+            position: 'absolute',
+            bottom: 0,
+        })
 
         // gsap.to('.main-video-content', {
         //     // x: 2000,
@@ -230,100 +230,110 @@ let loadedImages = 0;
 let totalImages = urls2.length;
 
 firstImage.src = urls2[0];
-urls2.forEach(function (image) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', image, true);
-    xhr.onload = function () {
-        loadedImages++;
-        if (loadedImages === totalImages) {
-            // Hide the loader
-            // console.log('object')
-            setTimeout(() => {
-                document.getElementById("loader").style.display = "none";
-            }, 200)
-            window.scrollTo(0, 0);
-            // const images = document.querySelectorAll('img');
-
-            // Loop through images and check their network requests
-
-            document.body.style.overflow = "hidden";
-            setTimeout(() => {
-                document.body.style.overflow = "auto";
-            }, 9000);
-            // Start the animation after preloading the first image
-            if (g) {
-                imageSequence({
-                    urls: urls2.slice(0, 200),
-                    canvas: "#image-sequence",
-                    paused: false,
-                    playhead: 0,
-                });
-            }
-
-            imageSequence({
-                urls: urls2,
-                canvas: "#image-sequence",
-                paused: false,
-                playhead: 200,
-
-                //clear: true, // Enable if your images have transparency
-                scrollTrigger: {
-                    start: 0,   // start at the very top
-                    end: document.querySelector('.container-video').offsetHeight, // entire page
-                    scrub: true, // important!
-                }
-            });
-        }
-    };
-    xhr.send();
-});
-
-// firstImage.onload = () => {
-//     window.scrollTo(0, 0);
-//     // const images = document.querySelectorAll('img');
-
-//     // Loop through images and check their network requests
-
-//     document.body.style.overflow = "hidden";
-//     setTimeout(() => {
-//         document.body.style.overflow = "auto";
-//     }, 9000);
-//     // Start the animation after preloading the first image
-//     if (g) {
-//         imageSequence({
-//             urls: urls2.slice(0, 200),
-//             canvas: "#image-sequence",
-//             paused: false,
-//             playhead: 0,
-//         });
-//     }
-
-//     imageSequence({
-//         urls: urls2,
-//         canvas: "#image-sequence",
-//         paused: false,
-//         playhead: 200,
-
-//         //clear: true, // Enable if your images have transparency
-//         scrollTrigger: {
-//             start: 0,   // start at the very top
-//             end: document.querySelector('.container-video').offsetHeight, // entire page
-//             scrub: true, // important!
-//         }
+// function loadImage(url) {
+//     return new Promise((resolve, reject) => {
+//         const xhr = new XMLHttpRequest();
+//         xhr.open('GET', url, true);
+//         xhr.onload = function () {
+//             if (xhr.status >= 200 && xhr.status < 300) {
+//                 resolve();
+//             } else {
+//                 reject(new Error(`Failed to load image: ${url}`));
+//             }
+//         };
+//         xhr.onerror = function () {
+//             reject(new Error(`Network error while loading image: ${url}`));
+//         };
+//         xhr.send();
 //     });
-//     // imageSequence({
-//     //     urls: urls2,
-//     //     canvas: "#image-sequence",
-//     //     paused: false,
-//     //     playhead: 0,
+// }
+// const imagePromises = urls2.map(loadImage);
 
-//     //     //clear: true, // Enable if your images have transparency
-//     //     scrollTrigger: {
-//     //         start: 0,   // start at the very top
-//     //         end: document.querySelector('.container-video').offsetHeight, // entire page
-//     //         scrub: true, // important!
-//     //     }
-//     // });
+// // Wait for all Promises to be resolved
+// Promise.all(imagePromises)
+//     .then(showContent)
+//     .catch(error => {
+//         console.error(error);
+//         // Optionally, you can show an error message or handle the error gracefully
+//         document.getElementById("loader").innerText = "Failed to load all images.";
+//     });
+// urls2.forEach(function (image) {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('GET', image, true);
+//     xhr.onload = function () {
+//         window.scrollTo(0, 0);
 
-// };
+//         document.body.style.overflow = "hidden";
+
+//         // window.scrollTo(0, 0);
+//         loadedImages++;
+//         if (loadedImages === totalImages) {
+//             // Hide the loader
+//             console.log('object')
+//             // setTimeout(() => {
+//             // document.getElementById("loader").style.display = "none";
+//             // document.getElementById("container").style.visibility = "visible";
+
+//             showContent()
+//             // }, 500)
+//         }
+//     };
+//     xhr.send();
+// });
+// document.getElementById("loader").style.display = "block";
+// document.getElementById("container").style.visibility = "hidden";
+// document.body.style.overflow = "hidden";
+function showContent() {
+    // Hide the loader and show the container
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("container").style.visibility = "visible";
+
+    // Restore scrolling
+    document.body.style.overflow = "";
+}
+firstImage.onload = () => {
+        window.scrollTo(0, 0);
+
+    document.body.style.overflow = "hidden";
+    setTimeout(() => {
+        document.body.style.overflow = "auto";
+    }, 9000);
+    // Start the animation after preloading the first image
+    if (g) {
+        imageSequence({
+            urls: urls2.slice(0, 200),
+            canvas: "#image-sequence",
+            paused: false,
+            playhead: 0,
+        });
+    }
+
+    imageSequence({
+        urls: urls2,
+        canvas: "#image-sequence",
+        paused: false,
+        playhead: 200,
+
+        //clear: true, // Enable if your images have transparency
+        scrollTrigger: {
+            start: 0,   // start at the very top
+            end: document.querySelector('.container-video').offsetHeight, // entire page
+            scrub: true, // important!
+        }
+    });
+    // imageSequence({
+    //     urls: urls2,
+    //     canvas: "#image-sequence",
+    //     paused: false,
+    //     playhead: 0,
+
+    //     //clear: true, // Enable if your images have transparency
+    //     scrollTrigger: {
+    //         start: 0,   // start at the very top
+    //         end: document.querySelector('.container-video').offsetHeight, // entire page
+    //         scrub: true, // important!
+    //     }
+    // });
+
+};
 

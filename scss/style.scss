@@ -1494,13 +1494,14 @@ footer {
     }
   }
 }
-
+@import "./mobile-container.scss";
 @import "./video-scroll.scss";
 // Homepage
 .container-video {
   position: relative;
   top: 0;
   width: 100%;
+  // visibility: hidden;
   height: 9800px;
   // padding-top: 1000px;
   .main-video-content {
@@ -1680,6 +1681,7 @@ footer {
   //   }
   // }
 }
+
 
 .o3-main-section-for-home-page {
   position: relative;

@@ -1,20 +1,10 @@
-
-// import Nebula ,{SpriteRenderer} from "three-nebula";
-// import json from "./json/particles.json";
-// import json from "./json/Nebulaparticles.json";
-// import json from "../json/Nebula-particles-3.json";
-// import Nebula, { SpriteRenderer } from "../packages/three-nebula/build/three-nebula.js";
-// import Nebula, { SpriteRenderer } from "/packages/three-nebula/build/three-nebula";
-// import Nebula, { SpriteRenderer } from "../packages/three-nebula-master/website/components/primitives/Nebula/index.js";
 import * as THREE from "three";
-import JSON from '../json/Nebula-particles-3.json' assert { type: 'json' };
-// import { SpriteRenderer } from "three-nebula";
-
+import JSON from '../json/Nebula-particles-3.json' with { type: 'json' };
 export let scene;
 export let camera;
 export let renderer;
 
-function getThreeApp (){
+function getThreeApp() {
   camera = new THREE.PerspectiveCamera(
     1000,
     window.innerWidth / window.innerHeight,
@@ -27,33 +17,37 @@ function getThreeApp (){
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.domElement.classList.add("three-renderer");
   document.body.appendChild(renderer.domElement);
-
+  const clock = new THREE.Clock();
+  const delta = clock.getDelta();
+  const time = clock.getElapsedTime();
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0)
-  return { scene, camera, renderer };
+  return { scene, camera, renderer, delta, time };
+  // renderer.setPixelRatio(window.devicePixelRatio);
+  // renderer.setSize(window.innerWidth, window.innerHeight);
+  // renderer.setClearColor(0x000000, 0)
+  // return { scene, camera, renderer };
 };
-// import json from "./json/hh.json";
-// import getThreeApp from "./three-app.js";
-
 function animate(nebula, app) {
-    requestAnimationFrame(() => {
-        setTimeout(() => {
-          animate(nebula, app);
-        }, 1000 / 30); // delay 16.7ms (approximately 60fps)
-      });
+  // requestAnimationFrame(() => animate(nebula, app));
+  setTimeout(() => {
+    requestAnimationFrame(() => { 
+      animate(nebula, app);
+    });
+  }, 1000 / 14); // (approximately 24fps)
   nebula.update();
   app.renderer.render(app.scene, app.camera);
 }
-console.log({Nebula})
 
 Nebula.System.fromJSONAsync(JSON.particleSystemState, THREE).then(loaded => {
   console.log('Loaded:', loaded);
   const app = getThreeApp();
   const nebulaRenderer = new Nebula.SpriteRenderer(app.scene, THREE);
-  const nebula = loaded.addRenderer(nebulaRenderer);
-  console.log('Nebula:', nebula);
-//   const Nebula = new Nebula()
+  // const force = new Nebula
+  const nebula = loaded
+    .addRenderer(nebulaRenderer)
+  console.log({ nebula })
   window.addEventListener('resize', () => {
     app.renderer.setSize(window.innerWidth, window.innerHeight);
     app.camera.aspect = window.innerWidth / window.innerHeight;
